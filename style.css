@@ -1,0 +1,60 @@
+body {
+    background-image: linear-gradient(to right bottom, #552586, #6d3e99, #8556ad, #9d6fc1, #b589d6);
+    background-attachment:fixed;
+    color: white;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+    max-height: 100vh;
+}
+
+.container {
+    background-color:#000000;
+    max-width: 70%;
+    min-height: 20vw;
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+h4 {
+    margin: 10px;
+    margin-right: 10px;
+}
+
+.interactive {
+    text-align: center;
+}
+
+.count h3 {
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.input-interactive::placeholder {
+    color:#DC2626;
+}
+
+.output-interactive-true {
+    color: blue;
+}
+
+.output-interactive-false {
+    color: #DC2626;
+}
+
+#button-interactive {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    height: 20px;
+}
+
+#button-interactive:hover {
+    background-color: #1b50c4;
+}

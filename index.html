@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quiz Dulu Gak SIh!</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <body>
+        <div class="container">
+            <H1>Quiz Perkalian</H1>
+            <h3>Level:</h3>
+            <select id="select-input">
+                <option value="1">Noob</option>
+                <option value="2">Pro</option>
+                <option value="3">Hacker</option>
+            </select>
+            <div class="interactive">
+                <h2 id="quiz-content">Isi Quiz</h2>
+                <input id="input-interactive" type="number" placeholder="Masukkan Jawaban Anda!">
+                <button id="button-interactive" onclick="answer()">Submit</button>
+                <h3 id="output-interactive"><br></h3>
+                <h2 id="skor">Skor: 0</h2>
+
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
