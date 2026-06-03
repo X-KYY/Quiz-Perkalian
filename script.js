@@ -61,7 +61,8 @@ document.getElementById('input-interactive').addEventListener('keydown', functio
         } else {
             level = 50;
         }
-        console.log(level)
+        nilai = 0;
+        skor.innerHTML = `Skor: ${nilai}`
         createRandomNumber();
     })
 
@@ -74,7 +75,7 @@ function answer() {
         return;
     }
 
-    // Pengkondisian status
+    // Status conditioning
     if (Number(input.value) === result) {
         output.textContent = 'BENAR';
         output.classList.remove('output-interactive-false')
@@ -87,7 +88,7 @@ function answer() {
         status = false;
     }
 
-    // Pemberian nilai skor
+    // Give a score
     function count() {
         if (status == true) {
             nilai += 1;
@@ -99,7 +100,6 @@ function answer() {
     }
     }
 
-    console.log(result)
     createRandomNumber();
     count();
     input.value = '';
