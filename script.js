@@ -1,10 +1,10 @@
 // Variabel
 let select = document.getElementById('select-input');
 let quiz = document.getElementById('quiz-content');
-let output = document.getElementById('output-interactive');
-let button = document.getElementById('button-interactive');
+let button = document.querySelectorAll('.square');
 let skor = document.getElementById('skor');
 const numberVariant = [];
+const choices = [];
 let randomNumber1 = '';
 let randomNumber2 = '';
 let result = '';
@@ -12,14 +12,28 @@ let status = true;
 let level = 10;
 let nilai = 0;
 
+// Setting Level
+select.addEventListener('change', function switchLevel() {
+    if (select.value == '2') {
+        level = 20;
+    } else if (select.value == '3') {
+        level = 50;
+    } else if (select.value == '1') {
+        level = 10;
+    }
+    numberVariant.length = 0;
+    nilai = 0;
+    skor.textContent = `Skor: ${nilai}`
+    createRandomNumber();
+})
 
 // Makes random number
 function createRandomNumber() {
-
     // Sistem Loop 
     for (let i = 1;i <= level;i++) {
     numberVariant.push(i);
 }
+    // Random question
     {
     let randomIndex = Math.floor(Math.random() * numberVariant.length);
     randomNumber1 = numberVariant[randomIndex];
@@ -29,80 +43,62 @@ function createRandomNumber() {
     let randomIndex = Math.floor(Math.random() * numberVariant.length);
     randomNumber2 = numberVariant[randomIndex];
 };
-    quiz.innerHTML = `${randomNumber1} X ${randomNumber2}`
+    // 4 Differents answer
+    result = randomNumber1 * randomNumber2;
+    choices.push(
+        result + 1,
+        result -1,
+        result +2,
+        result
+    )
+
+    choices.sort(() => Math.random() - 0.5);
+
+    // Declare question
+    quiz.innerHTML = `${randomNumber1} X ${randomNumber2}`;
+    button.forEach((box, index) => {box.textContent = choices[index]});
+
+    choices.length = 0;
+    numberVariant.length = 0;
 }
 
-// Select level
-select.addEventListener('change', function level() {
-    if (select.value == '1') {
-        level = 10;
-    } else if (select.value == '2') {
-        level = 20
-    } else if (select.value == '3') {
-        level = 50;
-    }
-})
+// Reset State
+function resetState(answer) {
+    answer.classList.remove('square-correct');
+    answer.classList.remove('square-wrong');
+}
 
-// Event if an enter clicked
-document.getElementById('input-interactive').addEventListener('keydown', function enter(board) {
-    if (board.key === 'Enter') {
-        board.preventDefault();
-        button.click();
-    }
-});
+// Function answer
+function toAnswer(answer) {
+    let input = Number(answer.textContent);
 
-// Select level
-    select.addEventListener('change', function changeLevel() {
-        numberVariant.length = 0;
-        if (select.value == '1') {
-            level = 10;
-        } else if (select.value == '2') {
-            level = 20
-        } else {
-            level = 50;
-        }
-        nilai = 0;
-        skor.innerHTML = `Skor: ${nilai}`
-        createRandomNumber();
-    })
-
-
-// Function to answer
-function answer() {
-    let input = document.getElementById('input-interactive');
-    result = randomNumber1 * randomNumber2;
-    if (input.value == '') {
-        return;
-    }
-
-    // Status conditioning
-    if (Number(input.value) === result) {
-        output.textContent = 'BENAR';
-        output.classList.remove('output-interactive-false')
-        output.classList.add('output-interactive-true')
+    // Check answer
+    if (input == result) {
         status = true;
+        answer.classList.add('square-correct')
+
     } else {
-        output.textContent = 'SALAH';
-        output.classList.remove('output-interactive-true')
-        output.classList.add('output-interactive-false')
-        status = false;
+        status = false
+        answer.classList.add('square-wrong');
     }
 
     // Give a score
-    function count() {
-        if (status == true) {
-            nilai += 1;
-            skor.innerHTML = `Skor: ${nilai}`
-    } else if (status == false) {
-            nilai -= 1;
-            skor.innerHTML = `Skor: ${nilai}`
-            if (nilai == -10) {alert("OOn")}
-    }
+    if (status) {
+        nilai += 1;
+        skor.textContent = `Skor: ${nilai}`;
+    } else {
+        nilai -= 1;
+        skor.textContent = `Skor: ${nilai}`;
     }
 
-    createRandomNumber();
-    count();
-    input.value = '';
+
+    // Give transition
+    setTimeout(() => {
+        resetState(answer)
+        createRandomNumber()
+    }, 500)
+
+;
 }
 
 createRandomNumber();
