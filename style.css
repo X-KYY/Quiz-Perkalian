@@ -1,16 +1,37 @@
+:root {
+    --color-primary-gradient: linear-gradient(to right bottom, #552586, #6d3e99, #8556ad, #9d6fc1, #b589d6);
+    --color-primary: black;
+    --correct-color: #3F8F29;
+    --wrong-color: #DC2626;
+    --max-opacity: 100%;
+    --min-opacity: 0%;
+}
+
 body {
-    background-image: linear-gradient(to right bottom, #552586, #6d3e99, #8556ad, #9d6fc1, #b589d6);
+    background-image: var(--color-primary-gradient);
     background-attachment:fixed;
     color: white;
-    padding-top: 20vh;
-    padding-bottom: 20vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
     max-height: 100vh;
 }
 
+.orbitron {
+  font-family: "Black Ops One", system-ui;
+  font-style: normal;
+}
+
+
+.roboto {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 .container {
-    background-color:#000000;
-    max-width: 70%;
-    min-height: 20vw;
+    background-color:var(--color-primary);
+    max-width: 80%;
+    max-height: 40%;
     padding: 20px;
     border-radius: 10px;
     margin: auto;
@@ -37,24 +58,45 @@ h4 {
 }
 
 .input-interactive::placeholder {
-    color:#DC2626;
+    color: var(--wrong-color);
 }
 
-.output-interactive-true {
-    color: blue;
+.container-answer {
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.output-interactive-false {
-    color: #DC2626;
+.column-answer {
+    display: grid;
+    grid-template-columns: repeat(2, 125px);
+    gap: 10px;
 }
 
-#button-interactive {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    height: 20px;
+.square {
+    font-size: 40px;
+    width: 125px;
+    height:125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2b5be0;
+    border-radius: 10px;
+    opacity: var(--max-opacity);
 }
 
-#button-interactive:hover {
-    background-color: #1b50c4;
+.square:hover {
+    background-color: #0735b4;
+    transition: all 0.2s;
+}
+
+.square-wrong {
+    background-color: var(--wrong-color);
+    pointer-events: none;
+}
+
+.square-correct {
+    background-color: var(--correct-color);
+    pointer-events: none;
+    
 }
