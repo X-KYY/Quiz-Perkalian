@@ -85,9 +85,10 @@ h4 {
     opacity: var(--max-opacity);
 }
 
-.square:hover {
-    background-color: #0735b4;
-    transition: all 0.2s;
+@media (hover: hover) {
+    .square:hover {
+        background-color: #0735b4;
+    }
 }
 
 .square-wrong {
